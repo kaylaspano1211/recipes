@@ -1,12 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS quantities;
-DROP TABLE IF EXISTS steps;
-DROP TABLE IF EXISTS recipes;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS images;
-DROP TABLE IF EXISTS ingredients;
-DROP TABLE IF EXISTS measurements;
+DROP TABLE IF EXISTS quantities, steps, recipes, users, images, ingredients, measurements;
 
 
 CREATE TABLE users (
