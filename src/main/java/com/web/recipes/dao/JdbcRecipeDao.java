@@ -2,10 +2,11 @@ package com.web.recipes.dao;
 
 
 import com.web.recipes.model.Recipes;
+import org.springframework.stereotype.Component;
 
 import java.security.Principal;
 import java.util.List;
-
+@Component
 public class JdbcRecipeDao<JdbcTemplate> implements RecipeDao{
 
     private final JdbcTemplate jdbcTemplate;
@@ -26,7 +27,7 @@ public class JdbcRecipeDao<JdbcTemplate> implements RecipeDao{
     @Override
     public Recipes retrieveRecipeById(int id) {
         Recipes recipe;
-        String sql =
+//        String sql =
         return null;
     }
 
@@ -45,20 +46,20 @@ public class JdbcRecipeDao<JdbcTemplate> implements RecipeDao{
         return null;
     }
 
-    private Recipes mapRowToRecipe(SqlRowSet result) {
-        Recipes recipe = new Recipes();
-
-        recipe.setRecipeId(result.getInt("recipeId"));
-        recipe.setRecipeName(result.getString("recipeName"));
-        recipe.setCourse(result.getString("course"));
-        recipe.setHolidays(result.getString("holidays"));
-        recipe.setFoodCategory(result.getString("foodCategory"));
-        recipe.setDescription(result.getString("description"));
-        recipe.setPrepTime(result.getInt("prepTime"));
-        recipe.setCookTime(result.getInt("cookTime"));
-        recipe.setUserId(result.getInt("userId"));
-        recipe.setImageId(result.getInt("imageId"));
-
-        return recipe;
-    }
+//    private Recipes mapRowToRecipe(SqlRowSet result) {
+//        Recipes recipe = new Recipes();
+//
+//        recipe.setRecipeId(result.getInt("recipeId"));
+//        recipe.setRecipeName(result.getString("recipeName"));
+//        recipe.setCourse(result.getString("course"));
+//        recipe.setHolidays(result.getString("holidays"));
+//        recipe.setFoodCategory(result.getString("foodCategory"));
+//        recipe.setDescription(result.getString("description"));
+//        recipe.setPrepTime(result.getInt("prepTime"));
+//        recipe.setCookTime(result.getInt("cookTime"));
+//        recipe.setUserId(result.getInt("userId"));
+//        recipe.setImageId(result.getInt("imageId"));
+//
+//        return recipe;
+//    }
 }
