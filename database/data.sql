@@ -9,23 +9,23 @@ INSERT INTO recipes (recipe_name, course, holidays, food_category, short_descrip
 VALUES ('Beef Stew', 'Dinner', null, 'Dutch', 'Cold weather essential', 15, 100, 2, null);
 
 INSERT INTO ingredients (ingredient_name) VALUES ('vegetable oil');
-INSERT INTO ingredients (ingredient_name) VALUES ('cubed beef stew meat');
+INSERT INTO ingredients (ingredient_name) VALUES ('beef stew meat');
 INSERT INTO ingredients (ingredient_name) VALUES ('olive oil');
-INSERT INTO ingredients (ingredient_name) VALUES ('chopped medium yellow onion');
-INSERT INTO ingredients (ingredient_name) VALUES ('carrots cut into rounds');
-INSERT INTO ingredients (ingredient_name) VALUES ('chopped celery');
+INSERT INTO ingredients (ingredient_name) VALUES ('yellow onion');
+INSERT INTO ingredients (ingredient_name) VALUES ('carrots');
+INSERT INTO ingredients (ingredient_name) VALUES ('celery');
 INSERT INTO ingredients (ingredient_name) VALUES ('kosher salt');
 INSERT INTO ingredients (ingredient_name) VALUES ('ground black pepper');
-INSERT INTO ingredients (ingredient_name) VALUES ('minced garlic');
+INSERT INTO ingredients (ingredient_name) VALUES ('garlic');
 INSERT INTO ingredients (ingredient_name) VALUES ('tomato paste');
 INSERT INTO ingredients (ingredient_name) VALUES ('low-sodium beef broth');
 INSERT INTO ingredients (ingredient_name) VALUES ('red wine');
 INSERT INTO ingredients (ingredient_name) VALUES ('worcestershire sauce');
-INSERT INTO ingredients (ingredient_name) VALUES ('fresh thyme');
+INSERT INTO ingredients (ingredient_name) VALUES ('thyme');
 INSERT INTO ingredients (ingredient_name) VALUES ('bay leaves');
-INSERT INTO ingredients (ingredient_name) VALUES ('halved baby potatoes');
-INSERT INTO ingredients (ingredient_name) VALUES ('frozen peas');
-INSERT INTO ingredients (ingredient_name) VALUES ('chopped parsley');
+INSERT INTO ingredients (ingredient_name) VALUES ('potatoes');
+INSERT INTO ingredients (ingredient_name) VALUES ('peas');
+INSERT INTO ingredients (ingredient_name) VALUES ('parsley');
 
 INSERT INTO measurements (measurement_name) VALUES ('tbsp');
 INSERT INTO measurements (measurement_name) VALUES ('tsp');
@@ -42,7 +42,7 @@ INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_qua
 INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_quantity) VALUES (2, 7, null, null);
 INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_quantity) VALUES (2, 8, null, null);
 INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_quantity) VALUES (2, 9, null, 3);
-INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_quantity) VALUES (2, 10, 3, 1/4);
+INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_quantity) VALUES (2, 10, 3, .25);
 INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_quantity) VALUES (2, 11, 3, 6);
 INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_quantity) VALUES (2, 12, 3, 1);
 INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_quantity) VALUES (2, 13, 1, 1);
