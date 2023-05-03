@@ -10,13 +10,15 @@ public class Recipes {
     private String holidays;
     private String foodCategory;
     private String description;
-    private Time prepTime;
-    private Time cookTime;
+    private int prepTime;
+    private int cookTime;
     private int userId;
     private int imageId;
 
+    public Recipes() {}
+
     public Recipes(int recipeId, String recipeName, String course, String holidays, String foodCategory,
-                   String description, Time prepTime, Time cookTime, int userId, int imageId) {
+                   String description, int prepTime, int cookTime, int userId, int imageId) {
         this.recipeId = recipeId;
         this.recipeName = recipeName;
         this.course = course;
@@ -77,19 +79,19 @@ public class Recipes {
         this.description = description;
     }
 
-    public Time getPrepTime() {
+    public int getPrepTime() {
         return prepTime;
     }
 
-    public void setPrepTime(Time prepTime) {
+    public void setPrepTime(int prepTime) {
         this.prepTime = prepTime;
     }
 
-    public Time getCookTime() {
+    public int getCookTime() {
         return cookTime;
     }
 
-    public void setCookTime(Time cookTime) {
+    public void setCookTime(int cookTime) {
         this.cookTime = cookTime;
     }
 

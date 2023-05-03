@@ -2,6 +2,7 @@ package com.web.recipes.dao;
 
 import com.web.recipes.model.Recipes;
 
+import java.security.Principal;
 import java.util.List;
 
 public interface RecipeDao {
@@ -18,7 +19,7 @@ public interface RecipeDao {
 
 //    post recipes
 
-    Recipes createRecipe (Recipes recipe);
+    Recipes createRecipe (Recipes recipe, String username);
 
 
 //    update recipes by id
