@@ -1,13 +1,13 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS quantities, steps, recipes, users, images, ingredients, measurements;
+DROP TABLE IF EXISTS quantities, steps, ingredients, measurements, recipes, users, images;
 
 
 CREATE TABLE users (
 
 	user_id serial,
 	username varchar(50) not null,
-	password_hash varchar(50) not null,
+	password_hash varchar(100) not null,
 	
 	CONSTRAINT pk_user PRIMARY KEY (user_id)
 );
@@ -28,8 +28,8 @@ CREATE TABLE recipes (
 	holidays varchar(100),
 	food_category varchar(100) not null,
 	short_description varchar(500) not null,
-	prep_time time not null,
-	cook_time time not null,
+	prep_time int not null,
+	cook_time int not null,
 	user_id int not null,
 	image_id int,
 	
@@ -42,14 +42,14 @@ CREATE TABLE recipes (
 CREATE TABLE ingredients (
 
 	ingredient_id serial,
-	ingredient_name varchar(50) not null,
+	ingredient_name varchar(100) not null,
 
 	CONSTRAINT pk_ingredient PRIMARY KEY (ingredient_id)
 );
 
 CREATE TABLE measurements (
 	measurement_id serial,
-	measurement_name varchar(50) not null,
+	measurement_name varchar(50),
 
 	CONSTRAINT pk_measurement PRIMARY KEY (measurement_id)
 );
@@ -59,8 +59,8 @@ CREATE TABLE quantities (
 	quantity_id serial,
 	recipe_id int not null,
 	ingredient_id int not null,
-	measurement_id int not null,
-	ingredient_quantity float not null,
+	measurement_id int,
+	ingredient_quantity decimal,
 
 	CONSTRAINT pk_quantity_id PRIMARY KEY (quantity_id),
 	CONSTRAINT fk_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id),
