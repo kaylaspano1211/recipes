@@ -2,17 +2,19 @@ package com.web.recipes.dao;
 
 
 import com.web.recipes.model.Recipes;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.security.Principal;
 import java.util.List;
 @Component
-public class JdbcRecipeDao<JdbcTemplate> implements RecipeDao{
+public class JdbcRecipeDao implements RecipeDao{
 
     private final JdbcTemplate jdbcTemplate;
 
 
     public JdbcRecipeDao(JdbcTemplate jdbcTemplate) {
+
         this.jdbcTemplate = jdbcTemplate;
     }
 
