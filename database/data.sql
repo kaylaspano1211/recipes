@@ -6,7 +6,7 @@ INSERT INTO users (username,password_hash) VALUES ('admin','$2a$08$UkVvwpULis18S
 INSERT INTO recipes (recipe_name, course, holidays, food_category, short_description, prep_time, cook_time, user_id, image_id)
 VALUES ('Stuffed Peppers', 'Dinner', 'Christmas', 'Italian', 'The perfect vessel for a variety of flavors', 20, 35, 1, null);
 INSERT INTO recipes (recipe_name, course, holidays, food_category, short_description, prep_time, cook_time, user_id, image_id)
-VALUES ('Beef Stew', 'Dinner', null, 'Dutch', 'Cold weather essential', 15, 100, 2, null);
+VALUES ('Beef Stew', 'Dinner', null, 'Dutch', 'Cold weather essential', 15, 100, 2, 1);
 
 INSERT INTO ingredients (ingredient_name) VALUES ('vegetable oil');
 INSERT INTO ingredients (ingredient_name) VALUES ('beef stew meat');
@@ -51,6 +51,8 @@ INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_qua
 INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_quantity) VALUES (2, 16, 4, 1);
 INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_quantity) VALUES (2, 17, 3, 1);
 INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_quantity) VALUES (2, 18, 3, .25);
+
+INSERT INTO images (url) VALUES ('https://twokooksinthekitchen.com/wp-content/uploads/2022/03/IMG_0309.jpg');
 
 
 
