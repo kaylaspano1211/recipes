@@ -31,7 +31,8 @@ public class RecipesController {
 
     @RequestMapping (path = "/recipes/{id}", method = RequestMethod.GET)
     public Recipes retrieveRecipeById (@PathVariable int id) {
-        return recipeDao.retrieveRecipeById(id);
+        Recipes recipe = recipeDao.retrieveRecipeById(id);
+        return recipe;
     }
 
 

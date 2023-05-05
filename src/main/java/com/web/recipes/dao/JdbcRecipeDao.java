@@ -25,7 +25,7 @@ public class JdbcRecipeDao implements RecipeDao{
     @Override
     public List<Recipes> retrieveAllRecipes() {
         List<Recipes> recipes = new ArrayList<>();
-        String sql = "SELECT recipe_name, course, holidays, food_category, short_description, prep_time, cook_time, user_id, image_id " +
+        String sql = "SELECT recipe_id, recipe_name, course, holidays, food_category, short_description, prep_time, cook_time, user_id, image_id " +
                 "FROM recipes ORDER BY recipe_name ASC;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
@@ -39,10 +39,16 @@ public class JdbcRecipeDao implements RecipeDao{
 
     @Override
     public Recipes retrieveRecipeById(int id) {
-        Recipes recipe;
-        String sql = "SELECT recipe_name, course, holidays, food_category, short_description, prep_time, cook_time, user_id, image_id " +
-                "FROM recipes WHERE recipe_id = ? ;";
-        return null;
+
+        String sql = "SELECT recipe_id, recipe_name, course, holidays, food_category, short_description, prep_time, cook_time, user_id, image_id " +
+                "FROM recipes WHERE recipe_id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+        if(results.next()) {
+            return mapRowToRecipe(results);
+        } else {
+            return null;
+        }
     }
 
     @Override
