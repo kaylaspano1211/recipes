@@ -3,12 +3,14 @@ package com.web.recipes.dao;
 
 import com.web.recipes.model.Recipes;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 @Component
-public class JdbcRecipeDao implements RecipeDao{
+public class JdbcRecipeDao<JdbcTemplate> implements RecipeDao{
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -22,6 +24,20 @@ public class JdbcRecipeDao implements RecipeDao{
 
     @Override
     public List<Recipes> retrieveAllRecipes() {
+        List<Recipes> recipes = new ArrayList<>();
+        String sql = "SELECT " +
+                "recipe_id, " +
+                "recipe_name, " +
+                "course, " +
+                "holidays, " +
+                "food_category, " +
+                "short_description, " +
+                "prep_time, " +
+                "cook_time, " +
+                "user_id, " +
+                "image_id " +
+                "FROM recipes " +
+                "ORDER BY recipe_name ASC;";
 
         return null;
     }
