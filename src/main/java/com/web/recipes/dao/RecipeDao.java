@@ -16,15 +16,17 @@ public interface RecipeDao {
 
     Recipes retrieveRecipeById (int id);
 
+    Recipes retrieveRecipeByUsername (String username);
+
 
 //    post recipes
 
-    Recipes createRecipe (Recipes recipe, String username);
+    Recipes createRecipe (Recipes recipe);
 
 
 //    update recipes by id
 
-    Recipes updateRecipe (Recipes recipe, int id);
+    Recipes updateRecipe (Recipes recipe, String username);
 
 
 //    delete recipes

@@ -10,6 +10,10 @@ public class Images {
         this.url = url;
     }
 
+    public Images() {
+
+    }
+
     public int getImageId() {
         return imageId;
     }

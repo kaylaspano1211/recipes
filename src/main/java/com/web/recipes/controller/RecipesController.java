@@ -25,8 +25,6 @@ public class RecipesController {
         return recipeDao.retrieveAllRecipes();
     }
 
-
-
 //    get recipes by id
 
     @RequestMapping (path = "/recipes/{id}", method = RequestMethod.GET)
@@ -35,24 +33,25 @@ public class RecipesController {
         return recipe;
     }
 
-
-
+    @RequestMapping (path = "/recipes", method = RequestMethod.GET)
+    public Recipes retrieveRecipeByUsername(@RequestParam String username) {
+        Recipes recipe = recipeDao.retrieveRecipeByUsername(username);
+        return recipe;
+    }
 
 //    post recipes
     @ResponseStatus (HttpStatus.CREATED)
     @RequestMapping (path = "/recipes", method = RequestMethod.POST)
-    public Recipes createRecipe (@RequestBody Recipes recipe, Principal principal) {
-        return recipeDao.createRecipe(recipe, principal.getName());
+    public Recipes createRecipe (@RequestBody Recipes recipe) {
+        return recipeDao.createRecipe(recipe);
     }
 
 
 //    update recipes by id
     @RequestMapping (path = "/recipes/{id}", method = RequestMethod.POST)
-    public Recipes updateRecipe (@RequestBody Recipes recipe, @PathVariable int id) {
-        return recipeDao.updateRecipe(recipe, id);
+    public Recipes updateRecipe (@RequestBody Recipes recipe, @PathVariable String username) {
+        return recipeDao.updateRecipe(recipe, username);
     }
-
-
 
 //    delete recipes
     @ResponseStatus (HttpStatus.NO_CONTENT)
