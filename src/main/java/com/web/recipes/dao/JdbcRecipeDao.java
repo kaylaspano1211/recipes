@@ -3,9 +3,11 @@ package com.web.recipes.dao;
 
 import com.web.recipes.model.Recipes;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 @Component
 public class JdbcRecipeDao implements RecipeDao{
@@ -22,14 +24,24 @@ public class JdbcRecipeDao implements RecipeDao{
 
     @Override
     public List<Recipes> retrieveAllRecipes() {
+        List<Recipes> recipes = new ArrayList<>();
+        String sql = "SELECT recipe_name, course, holidays, food_category, short_description, prep_time, cook_time, user_id, image_id " +
+                "FROM recipes ORDER BY recipe_name ASC;";
 
-        return null;
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            Recipes recipe = mapRowToRecipe(results);
+            recipes.add(recipe);
+        }
+
+        return recipes;
     }
 
     @Override
     public Recipes retrieveRecipeById(int id) {
         Recipes recipe;
-//        String sql =
+        String sql = "SELECT recipe_name, course, holidays, food_category, short_description, prep_time, cook_time, user_id, image_id " +
+                "FROM recipes WHERE recipe_id = ? ;";
         return null;
     }
 
@@ -48,20 +60,20 @@ public class JdbcRecipeDao implements RecipeDao{
         return null;
     }
 
-//    private Recipes mapRowToRecipe(SqlRowSet result) {
-//        Recipes recipe = new Recipes();
-//
-//        recipe.setRecipeId(result.getInt("recipeId"));
-//        recipe.setRecipeName(result.getString("recipeName"));
-//        recipe.setCourse(result.getString("course"));
-//        recipe.setHolidays(result.getString("holidays"));
-//        recipe.setFoodCategory(result.getString("foodCategory"));
-//        recipe.setDescription(result.getString("description"));
-//        recipe.setPrepTime(result.getInt("prepTime"));
-//        recipe.setCookTime(result.getInt("cookTime"));
-//        recipe.setUserId(result.getInt("userId"));
-//        recipe.setImageId(result.getInt("imageId"));
-//
-//        return recipe;
-//    }
+    private Recipes mapRowToRecipe(SqlRowSet result) {
+        Recipes recipe = new Recipes();
+
+        recipe.setRecipeId(result.getInt("recipe_id"));
+        recipe.setRecipeName(result.getString("recipe_name"));
+        recipe.setCourse(result.getString("course"));
+        recipe.setHolidays(result.getString("holidays"));
+        recipe.setFoodCategory(result.getString("food_category"));
+        recipe.setDescription(result.getString("short_description"));
+        recipe.setPrepTime(result.getInt("prep_time"));
+        recipe.setCookTime(result.getInt("cook_time"));
+        recipe.setUserId(result.getInt("user_id"));
+        recipe.setImageId(result.getInt("image_id"));
+
+        return recipe;
+    }
 }
