@@ -1,7 +1,11 @@
 BEGIN TRANSACTION;
 
-INSERT INTO users (username,password_hash) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC');
-INSERT INTO users (username,password_hash) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC');
+INSERT INTO users (username,password_hash, user_role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'admin');
+INSERT INTO users (username,password_hash, user_role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'admin');
+
+-- default image id 1
+INSERT INTO images (url) VALUES ('https://www.mdanderson.org/images/publications/focused-on-health/2019/web_healthy_cooking_1376x774.png.resize.702.404.jpg');
+INSERT INTO images (url) VALUES ('https://twokooksinthekitchen.com/wp-content/uploads/2022/03/IMG_0309.jpg');
 
 INSERT INTO recipes (recipe_name, course, holidays, food_category, short_description, prep_time, cook_time, user_id, image_id)
 VALUES ('Stuffed Peppers', 'Dinner', 'Christmas', 'Italian', 'The perfect vessel for a variety of flavors', 20, 35, 1, null);
@@ -51,9 +55,6 @@ INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_qua
 INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_quantity) VALUES (2, 16, 4, 1);
 INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_quantity) VALUES (2, 17, 3, 1);
 INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_quantity) VALUES (2, 18, 3, .25);
-
-INSERT INTO images (url) VALUES ('https://twokooksinthekitchen.com/wp-content/uploads/2022/03/IMG_0309.jpg');
-
 
 
 COMMIT;

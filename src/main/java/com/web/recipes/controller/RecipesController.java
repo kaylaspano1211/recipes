@@ -2,6 +2,7 @@ package com.web.recipes.controller;
 
 import com.web.recipes.dao.RecipeDao;
 import com.web.recipes.model.Recipes;
+import com.web.recipes.security.RecipeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -33,7 +34,7 @@ public class RecipesController {
         return recipe;
     }
 
-    @RequestMapping (path = "/recipes", method = RequestMethod.GET)
+    @RequestMapping (path = "/recipes/user", method = RequestMethod.GET)
     public Recipes retrieveRecipeByUsername(@RequestParam String username) {
         Recipes recipe = recipeDao.retrieveRecipeByUsername(username);
         return recipe;
@@ -56,6 +57,8 @@ public class RecipesController {
 //    delete recipes
     @ResponseStatus (HttpStatus.NO_CONTENT)
     @RequestMapping (path = "/recipes/{id}", method = RequestMethod.DELETE)
-    public void deleteRecipe (@PathVariable int id, Principal principal) {}
+    public void deleteRecipe (@PathVariable int id, Principal principal) throws RecipeNotFoundException {
+         recipeDao.deleteRecipes(id);
+    }
 
 }

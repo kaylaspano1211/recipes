@@ -8,6 +8,7 @@ CREATE TABLE users (
 	user_id serial,
 	username varchar(50) not null,
 	password_hash varchar(100) not null,
+	user_role varchar(50) not null,
 	
 	CONSTRAINT pk_user PRIMARY KEY (user_id)
 );

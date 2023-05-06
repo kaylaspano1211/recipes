@@ -14,5 +14,5 @@ public interface UsersDao {
 
     List<Users> getAllUsers();
 
-    boolean addUser(String username, String password);
+    boolean addUser(String username, String password, String role);
 }

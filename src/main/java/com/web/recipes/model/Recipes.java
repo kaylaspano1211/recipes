@@ -13,12 +13,21 @@ public class Recipes {
     private int prepTime;
     private int cookTime;
     private int userId;
-    private int imageId;
+
+    Images image;
+
+    public Images getImage() {
+        return image;
+    }
+
+    public void setImage(Images image) {
+        this.image = image;
+    }
 
     public Recipes() {}
 
     public Recipes(int recipeId, String recipeName, String course, String holidays, String foodCategory,
-                   String description, int prepTime, int cookTime, int userId, int imageId) {
+                   String description, int prepTime, int cookTime, int userId, Images image) {
         this.recipeId = recipeId;
         this.recipeName = recipeName;
         this.course = course;
@@ -28,7 +37,7 @@ public class Recipes {
         this.prepTime = prepTime;
         this.cookTime = cookTime;
         this.userId = userId;
-        this.imageId = imageId;
+        this.image = image;
     }
 
     public int getRecipeId() {
@@ -101,13 +110,5 @@ public class Recipes {
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public int getImageId() {
-        return imageId;
-    }
-
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
     }
 }
