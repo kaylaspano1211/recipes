@@ -1,8 +1,8 @@
 package com.web.recipes.dao;
 
 import com.web.recipes.model.Recipes;
+import com.web.recipes.security.RecipeNotFoundException;
 
-import java.security.Principal;
 import java.util.List;
 
 public interface RecipeDao {
@@ -31,5 +31,5 @@ public interface RecipeDao {
 
 //    delete recipes
 
-    Recipes deleteRecipes (int id);
+    void deleteRecipes (int id) throws RecipeNotFoundException;
 }

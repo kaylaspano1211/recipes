@@ -2,12 +2,11 @@ package com.web.recipes.dao;
 
 
 import com.web.recipes.model.Recipes;
-import com.web.recipes.model.Users;
+import com.web.recipes.security.RecipeNotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 @Component
@@ -90,6 +89,7 @@ public class JdbcRecipeDao implements RecipeDao{
         return recipe;
     }
 
+//TODO finish sql
 
     @Override
     public Recipes updateRecipe(Recipes recipe, String username) {
@@ -105,9 +105,34 @@ public class JdbcRecipeDao implements RecipeDao{
     }
 
     @Override
-    public Recipes deleteRecipes(int id) {
-        return null;
+    public void deleteRecipes(int id) throws RecipeNotFoundException { //delete from quantities and steps first
+        String sql = "SELECT recipe_id, recipe_name, course, holidays, food_category, short_description, " +
+                "prep_time, cook_time, user_id, image_id FROM recipes WHERE recipe_id = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
+
+        int recipeId;
+
+        if (result.next()) {
+            recipeId = result.getInt("recipe_id");
+        }
+        else {
+            throw new RecipeNotFoundException();
+        }
+
+        //first delete the recipe
+        String recipeSql = "DELETE FROM recipes WHERE recipe_id = ?;";
+        jdbcTemplate.update(recipeSql, id);
+
+        //now delete the steps
+        String stepsSQL = "DELETE FROM steps WHERE recipe_id = ?;";
+        jdbcTemplate.update(stepsSQL, recipeId);
+
+        //delete from the quantities
+        String quantitySQL = "DELETE FROM quantities WHERE recipe_id = ?;";
+        jdbcTemplate.update(quantitySQL, recipeId);
     }
+
+
 
     private Recipes mapRowToRecipe(SqlRowSet result) {
         Recipes recipe = new Recipes();
