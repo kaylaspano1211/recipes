@@ -8,4 +8,6 @@ public interface IngredientsDao {
 
     Ingredients retrieveIngredientById (int id);
 
+    Ingredients retrieveIngredientsByName (String ingredientName);
+
 }

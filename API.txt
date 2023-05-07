@@ -48,3 +48,55 @@ http method: DELETE
 url: /recipes/{id}
 status: 204 no content
 
+
+
+IMAGES
+
+add image
+http method: POST
+url: /images
+status: 201 created
+
+get image by id
+http method: GET
+url: /images/{id}
+status: 200 ok
+	404 not found
+
+
+
+INGREDIENTS
+
+add ingredient
+http method: POST
+url: /ingredients
+status: 201 created
+
+get ingredient by id
+http method: GET
+url: /ingredients/{id}
+status: 200 ok
+	404 not found
+
+get ingredient by name
+http method: GET
+url: /ingredients/name
+status: 200 ok
+	404 not found
+
+
+
+MEASUREMENTS
+
+get measurement by id
+http method: GET
+url: /measurements/{id}
+status: 200 ok
+	404 not found
+
+get measurement by name
+http method: GET
+url: /measurments
+status: 200 ok
+	404 not found
+

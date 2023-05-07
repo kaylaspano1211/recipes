@@ -10,6 +10,10 @@ public class Measurements {
         this.measurementName = measurementName;
     }
 
+    public Measurements() {
+
+    }
+
     public int getMeasurementId() {
         return measurementId;
     }
