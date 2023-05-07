@@ -16,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class RecipesController {
 //    post recipes
     @ResponseStatus (HttpStatus.CREATED)
     @RequestMapping (path = "/recipes", method = RequestMethod.POST)
-    public Recipes createRecipe (@RequestBody Recipes recipe) {
+    public Recipes createRecipe (@Valid @RequestBody Recipes recipe) {
 
         return recipeDao.createRecipe(recipe);
     }
@@ -67,7 +68,7 @@ public class RecipesController {
 //    update recipes by id
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping (path = "/recipes/{id}", method = RequestMethod.PUT)
-    public void updateRecipe (@RequestBody Recipes recipe, @PathVariable int id, @PathVariable String username) {
+    public void updateRecipe (@Valid @RequestBody Recipes recipe, @PathVariable int id, @PathVariable String username) {
        try {
             recipeDao.updateRecipe(recipe, username, id);
        } catch (RecipeNotFoundException e){
@@ -85,7 +86,7 @@ public class RecipesController {
 //  add ingredient
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping (path = "/ingredients", method = RequestMethod.POST)
-    public Ingredients addIngredients (@RequestBody String ingredient) {
+    public Ingredients addIngredients (@Valid @RequestBody String ingredient) {
         return ingredientsDao.addIngredients(ingredient);
     }
 
