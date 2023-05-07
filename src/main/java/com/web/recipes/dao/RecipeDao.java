@@ -26,7 +26,7 @@ public interface RecipeDao {
 
 //    update recipes by id
 
-    void updateRecipe (Recipes recipe, String username, int id) throws RecipeNotFoundException;
+    void updateRecipe (Recipes recipe, int id) throws RecipeNotFoundException;
 
 
 //    delete recipes

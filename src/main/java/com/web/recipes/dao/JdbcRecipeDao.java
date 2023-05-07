@@ -111,7 +111,7 @@ public class JdbcRecipeDao implements RecipeDao{
 
 
     @Override
-    public void updateRecipe(Recipes recipe, String username, int id) throws RecipeNotFoundException {
+    public void updateRecipe(Recipes recipe, int id) throws RecipeNotFoundException {
 
         Recipes currentRecipe = this.retrieveRecipeById(id);
 
@@ -119,18 +119,19 @@ public class JdbcRecipeDao implements RecipeDao{
             throw new RecipeNotFoundException();
         } else {
             String sql = "UPDATE recipes " +
-                    "SET recipe_name = '" + recipe.getRecipeName() + "', "+
-                    "course = '" + recipe.getCourse() + "', " +
-                    "holidays = '" + recipe.getHolidays() + "', " +
-                    "food_category = '" + recipe.getFoodCategory() + "', " +
-                    "short_description = '" + recipe.getDescription() + "', " +
-                    "prep_time = '" + recipe.getPrepTime() + "', " +
-                    "cook_time = '" + recipe.getCookTime() + "', " +
-                    "user_id = '(SELECT user_id FROM users WHERE username = ?)', " +
-                    "image_id = '" + recipe.getImage() + "', " +
+                    "SET recipe_name = ?, "+
+                    "course = ?, " +
+                    "holidays = ?, " +
+                    "food_category = ?, " +
+                    "short_description = ?, " +
+                    "prep_time = ?, " +
+                    "cook_time = ?, " +
+                    "user_id = ?, " +
+                    "image_id = ? " +
                     "WHERE recipe_id = ?;";
 
-            jdbcTemplate.update(sql, recipe, username, id);
+            jdbcTemplate.update(sql, recipe.getRecipeName(), recipe.getCourse(), recipe.getHolidays(), recipe.getFoodCategory(),
+                                recipe.getDescription(), recipe.getPrepTime(), recipe.getCookTime(),recipe.getUserId(), recipe.getImage(), id);
 
         }
     }

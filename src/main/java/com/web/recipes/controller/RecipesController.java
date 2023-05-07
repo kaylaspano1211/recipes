@@ -68,9 +68,9 @@ public class RecipesController {
 //    update recipes by id
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping (path = "/recipes/{id}", method = RequestMethod.PUT)
-    public void updateRecipe (@Valid @RequestBody Recipes recipe, @PathVariable int id, @PathVariable String username) {
+    public void updateRecipe (@Valid @RequestBody Recipes recipe, @PathVariable("id") int id, Principal user) {
        try {
-            recipeDao.updateRecipe(recipe, username, id);
+            recipeDao.updateRecipe(recipe, id);
        } catch (RecipeNotFoundException e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Recipe doesn't exist");
        }
