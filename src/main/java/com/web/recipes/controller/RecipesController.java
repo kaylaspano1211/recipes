@@ -49,9 +49,9 @@ public class RecipesController {
 
 
 //    update recipes by id
-    @RequestMapping (path = "/recipes/{id}", method = RequestMethod.POST)
-    public Recipes updateRecipe (@RequestBody Recipes recipe, @PathVariable String username) {
-        return recipeDao.updateRecipe(recipe, username);
+    @RequestMapping (path = "/recipes/{id}", method = RequestMethod.PUT)
+    public Recipes updateRecipe (@RequestBody Recipes recipe, @PathVariable int id, @PathVariable String username) {
+        return recipeDao.updateRecipe(recipe, username, id);
     }
 
 //    delete recipes

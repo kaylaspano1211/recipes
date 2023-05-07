@@ -10,6 +10,10 @@ public class Ingredients {
         this.ingredientName = ingredientName;
     }
 
+    public Ingredients() {
+
+    }
+
     public int getIngredientId() {
         return ingredientId;
     }

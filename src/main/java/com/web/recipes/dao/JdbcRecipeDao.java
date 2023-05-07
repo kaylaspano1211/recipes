@@ -2,6 +2,7 @@ package com.web.recipes.dao;
 
 
 import com.web.recipes.model.Images;
+import com.web.recipes.model.Ingredients;
 import com.web.recipes.model.Recipes;
 import com.web.recipes.security.RecipeNotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -108,19 +109,30 @@ public class JdbcRecipeDao implements RecipeDao{
         return recipe;
     }
 
-//TODO finish sql
 
     @Override
-    public Recipes updateRecipe(Recipes recipe, String username) {
+    public void updateRecipe(Recipes recipe, String username, int id) throws RecipeNotFoundException {
 
-        Recipes currentRecipe = this.retrieveRecipeByUsername(username);
+        Recipes currentRecipe = this.retrieveRecipeById(id);
 
         if (currentRecipe == null) {
-            return null;
+            throw new RecipeNotFoundException();
         } else {
-//            String sql = "UPDATE recipe "
+            String sql = "UPDATE recipes " +
+                    "SET recipe_name = '" + recipe.getRecipeName() + "', "+
+                    "course = '" + recipe.getCourse() + "', " +
+                    "holidays = '" + recipe.getHolidays() + "', " +
+                    "food_category = '" + recipe.getFoodCategory() + "', " +
+                    "short_description = '" + recipe.getDescription() + "', " +
+                    "prep_time = '" + recipe.getPrepTime() + "', " +
+                    "cook_time = '" + recipe.getCookTime() + "', " +
+                    "user_id = '(SELECT user_id FROM users WHERE username = ?)', " +
+                    "image_id = '" + recipe.getImage() + "', " +
+                    "WHERE recipe_id = ?;";
+
+            jdbcTemplate.update(sql, recipe, username, id);
+
         }
-        return null;
     }
 
     @Override

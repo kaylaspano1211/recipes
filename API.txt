@@ -1,14 +1,50 @@
-Authentication
+USERS
 
-Create recipe
-POST
+login
+http method: POST
+url: /login
+status:
 
-Get recipe
+register
+http method: POST
+url: /register
+status: 201 CREATED
+ 
 
 
-Update recipe
 
+RECIPES
 
-Delete recipe
+get all recipes
+http method: GET
+url: /recipes
+status 200 ok - []
 
+get recipes by id
+http method: GET
+url: /recipes/{id}
+status: 200 ok
+	404 not found
+
+get recipes by username
+http method: GET
+url: /recipes/user?username=""
+status: 200 ok
+	404 not found
+
+create recipes
+http method: POST
+url: /recipes
+status: 201 CREATED
+
+update recipes
+http method: PUT
+url: /recipes/{id}
+status: 200 ok
+	404 not found
+
+delete recipes
+http method: DELETE
+url: /recipes/{id}
+status: 204 no content
 
