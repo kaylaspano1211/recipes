@@ -21,7 +21,7 @@ public class JdbcMeasurementDao implements MeasurementDao{
     public Measurements retrieveMeasurementById(int id) {
         Measurements measurement = null;
 
-        String sql = "SELECT measurement_id, measurement_name FROM measurement WHERE measurement_id = ?;";
+        String sql = "SELECT measurement_id, measurement_name FROM measurements WHERE measurement_id = ?;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
 
         if(result.next()){
@@ -32,7 +32,16 @@ public class JdbcMeasurementDao implements MeasurementDao{
 
     @Override
     public Measurements retrieveMeasurementByName(String measurementName) {
-        return null;
+        Measurements measurement = null;
+
+        String sql = "SELECT measurement_id, measurement_name FROM measurements WHERE measurement_name = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, measurementName);
+
+        if(result.next()){
+            measurement = mapRowToMeasurement(result);
+        }
+
+        return measurement;
     }
 
 

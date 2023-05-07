@@ -28,7 +28,7 @@ status: 200 ok
 
 get recipes by username
 http method: GET
-url: /recipes/user?username=""
+url: /recipes/user
 status: 200 ok
 	404 not found
 
@@ -54,7 +54,7 @@ IMAGES
 
 add image
 http method: POST
-url: /images
+url: /images/{url}
 status: 201 created
 
 get image by id
@@ -69,7 +69,7 @@ INGREDIENTS
 
 add ingredient
 http method: POST
-url: /ingredients
+url: /ingredients{ingredientName}
 status: 201 created
 
 get ingredient by id
@@ -96,7 +96,7 @@ status: 200 ok
 
 get measurement by name
 http method: GET
-url: /measurments
+url: /measurments/name/{measurementName}
 status: 200 ok
 	404 not found
 

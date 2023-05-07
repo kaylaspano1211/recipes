@@ -85,9 +85,9 @@ public class RecipesController {
 
 //  add ingredient
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping (path = "/ingredients", method = RequestMethod.POST)
-    public Ingredients addIngredients (@Valid @RequestBody String ingredient) {
-        return ingredientsDao.addIngredients(ingredient);
+    @RequestMapping (path = "/ingredients/{ingredientName}", method = RequestMethod.POST)
+    public Ingredients addIngredients (@PathVariable String ingredientName) {
+        return ingredientsDao.addIngredients(ingredientName);
     }
 
 //    get ingredient by id
@@ -100,13 +100,13 @@ public class RecipesController {
 //    get ingredient by name
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(path = "/ingredients/name", method = RequestMethod.GET)
-    public Ingredients getIngredientByName (@PathVariable String ingredientName) {
+    public Ingredients getIngredientByName (@RequestParam String ingredientName) {
         return ingredientsDao.retrieveIngredientsByName(ingredientName);
     }
 
 //    add image
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/images", method = RequestMethod.POST)
+    @RequestMapping(path = "/images/{url}", method = RequestMethod.POST)
     public Images addImage (@PathVariable String url){
         return imagesDao.addImage(url);
     }
@@ -127,7 +127,7 @@ public class RecipesController {
 
 //    get measurement by name
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(path = "/measurements", method = RequestMethod.GET)
+    @RequestMapping(path = "/measurements/name/{measurementName}", method = RequestMethod.GET)
     public Measurements retrieveMeasurementByName (@PathVariable String measurementName) {
         return measurementDao.retrieveMeasurementByName(measurementName);
     }
