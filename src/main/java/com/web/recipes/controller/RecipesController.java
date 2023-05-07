@@ -5,8 +5,10 @@ import com.web.recipes.model.Recipes;
 import com.web.recipes.security.RecipeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
 import java.util.List;
@@ -49,9 +51,14 @@ public class RecipesController {
 
 
 //    update recipes by id
+    @ResponseStatus(HttpStatus.OK)
     @RequestMapping (path = "/recipes/{id}", method = RequestMethod.PUT)
-    public Recipes updateRecipe (@RequestBody Recipes recipe, @PathVariable int id, @PathVariable String username) {
-        return recipeDao.updateRecipe(recipe, username, id);
+    public void updateRecipe (@RequestBody Recipes recipe, @PathVariable int id, @PathVariable String username) {
+       try {
+            recipeDao.updateRecipe(recipe, username, id);
+       } catch (RecipeNotFoundException e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Recipe doesn't exist");
+       }
     }
 
 //    delete recipes
