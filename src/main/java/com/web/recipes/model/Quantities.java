@@ -16,19 +16,27 @@ public class Quantities {
         this.ingredientQuantity = ingredientQuantity;
     }
 
+    public Quantities() {
+
+    }
+
     public int getQuantityId() {
+
         return quantityId;
     }
 
     public void setQuantityId(int quantityId) {
+
         this.quantityId = quantityId;
     }
 
     public int getRecipeId() {
+
         return recipeId;
     }
 
     public void setRecipeId(int recipeId) {
+
         this.recipeId = recipeId;
     }
 

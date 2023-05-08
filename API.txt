@@ -100,3 +100,40 @@ url: /measurments/name/{measurementName}
 status: 200 ok
 	404 not found
 
+
+
+QUANTITIES
+
+add quantity
+http method: POST
+url: /quantities
+status: 201 created
+
+update quantities
+http method: PUT
+url: /quantities/{id}
+status: 200 ok
+
+get quantity by id
+http method: GET
+url: /quantities/{id}
+status: 200 ok
+	404 not found
+
+get quantity by recipe id
+http method: GET
+url: /quantities/recipe/{id}
+status: 200 ok
+	404 not found
+
+get quantity by ingredient id
+http method: GET
+url: /quantities/ingredient/{id}
+status: 200 ok
+	404 not found
+
+get quantity by measurement id
+http method: GET
+url: /quantities/measurement/{id}
+status: 200 ok
+	404 not found
