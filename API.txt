@@ -137,3 +137,42 @@ http method: GET
 url: /quantities/measurement/{id}
 status: 200 ok
 	404 not found
+
+
+
+STEPS
+
+add a step
+http method: POST
+url: /steps
+status: 201 created
+
+get all steps in recipe
+http method: GET
+url: /steps/recipe/{id}
+status: 200 ok
+	404 not found
+
+get step by step id
+http method: GET
+url: /steps/{id}
+status: 200 ok
+	404 not found
+
+update step
+http method: PUT
+url: /steps/{recipeId}
+status: 200 ok
+	404 not found
+
+delete step number
+http method: DELETE
+url: /steps/number/{id}
+status: 204 no content
+	404 not found
+
+delete all steps
+http method: DELETE
+url: /steps/{id}
+status: 204 no content
+	404 not found

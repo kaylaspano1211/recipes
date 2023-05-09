@@ -73,8 +73,8 @@ CREATE TABLE quantities (
 CREATE TABLE steps (
 	step_id serial,
 	recipe_id int not null,
-	step_number int,
-	step_description varchar(500),
+	step_number int not null,
+	step_description varchar(5000) not null,
 
 	CONSTRAINT pk_step PRIMARY KEY (step_id),
 	CONSTRAINT fk_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id)

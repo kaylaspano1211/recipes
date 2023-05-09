@@ -12,9 +12,9 @@ public interface StepsDao {
 
     Steps getStepsById (int id);
 
-    void updateStep (String stepDescription, int id);
+    void updateStep (Steps steps);
 
-    void deleteStepNumber(int id);
+    void deleteStepNumber(int number);
 
     void deleteAllSteps(int id);
 

@@ -56,6 +56,13 @@ INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_qua
 INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_quantity) VALUES (2, 17, 3, 1);
 INSERT INTO quantities (recipe_id, ingredient_id, measurement_id, ingredient_quantity) VALUES (2, 18, 3, .25);
 
+INSERT INTO steps (recipe_id, step_number, step_description) VALUES (2, 1, 'In a large dutch oven or heavy-bottomed pot over medium heat, heat oil. Add beef and cook until seared on all sides, 10 minutes, working in batches if necessary. Transfer beef to a plate.');
+INSERT INTO steps (recipe_id, step_number, step_description) VALUES (2, 2, 'In the same pot, cook onion, carrots, and celery until soft, 5 minutes. Season with salt and pepper. Add garlic and tomato paste and cook until garlic is fragrant and tomato paste has darkened, 2 minutes.');
+INSERT INTO steps (recipe_id, step_number, step_description) VALUES (2, 3, 'Add beef back to dutch oven then add broth, wine, Worcestershire sauce, thyme, and bay leaves.');
+INSERT INTO steps (recipe_id, step_number, step_description) VALUES (2, 4, 'Bring to a boil then reduce heat to a simmer. Season with salt and pepper. Cover and let simmer until beef is tender, 30 to 45 minutes.');
+INSERT INTO steps (recipe_id, step_number, step_description) VALUES (2, 5, 'Add potatoes and simmer, covered, until potatoes are tender, 15 minutes.');
+INSERT INTO steps (recipe_id, step_number, step_description) VALUES (2, 6, 'Remove bay leaves. Stir in peas and cook until warmed through, 2 minutes. Season stew to taste with salt and pepper, then ladle into serving bowls and garish with parsley.');
 
+																	 
 COMMIT;
 

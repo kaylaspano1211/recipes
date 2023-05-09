@@ -30,6 +30,8 @@ public class RecipesController {
     private MeasurementDao measurementDao;
     @Autowired
     private QuantitiesDao quantitiesDao;
+    @Autowired
+    private StepsDao stepsDao;
 
 
 //    get all recipes
@@ -132,7 +134,7 @@ public class RecipesController {
 //    add quantity
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/quantities", method = RequestMethod.POST)
-    public Quantities addQuantities (@RequestBody Quantities quantities) {
+    public Quantities addQuantities (@Valid @RequestBody Quantities quantities) {
         return quantitiesDao.addQuantity(quantities);
     }
 
@@ -174,5 +176,60 @@ public class RecipesController {
     public List<Quantities> retrieveQuantityByMeasurementId (@PathVariable int id) {
         return quantitiesDao.getQuantityByMeasurementId(id);
     }
+
+//    add a step
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/steps", method = RequestMethod.POST)
+    public Steps addStep (@Valid@RequestBody Steps steps) {
+        return stepsDao.addStep(steps);
+    }
+
+//    get all steps in recipe
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(path = "/steps/recipe/{id}", method = RequestMethod.GET)
+    public List<Steps> allStepsInRecipe (@PathVariable int id) {
+        return stepsDao.getAllStepsInRecipe(id);
+    }
+
+//    get steps by id
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(path = "/steps/{id}", method = RequestMethod.GET)
+    public Steps getStepById(@PathVariable int id){
+        return stepsDao.getStepsById(id);
+    }
+
+//    update a step
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(path = "/steps/{recipeId}", method = RequestMethod.PUT)
+    public void updateStep(@Valid @RequestBody Steps steps, @PathVariable int recipeId){
+        try {
+            stepsDao.updateStep(steps);
+        } catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Step doesn't exist");
+        }
+    }
+
+//    delete a step
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/steps/number/{number}", method = RequestMethod.DELETE)
+    public void deleteStepNumber(@PathVariable int number){
+        try {
+            stepsDao.deleteStepNumber(number);
+        } catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Step doesn't exist");
+        }
+    }
+
+//    delete all steps
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/steps/{id}", method = RequestMethod.DELETE)
+    public void deleteAllSteps(@PathVariable int id){
+        try {
+            stepsDao.deleteAllSteps(id);
+        } catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Steps not found");
+        }
+    }
+
 
 }

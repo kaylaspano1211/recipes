@@ -58,22 +58,22 @@ public class JdbcStepsDao implements StepsDao{
     }
 
     @Override
-    public void updateStep(String stepDescription, int id) {
+    public void updateStep(Steps steps) {
         String sql = "UPDATE steps SET step_description = ? " +
-                "WHERE step_id = ?;";
+                "WHERE recipe_id = ? AND step_id = ?;";
 
-        jdbcTemplate.update(sql, stepDescription, id);
+        jdbcTemplate.update(sql, steps.getStepDescription(), steps.getRecipeId(), steps.getStepId());
     }
 
     @Override
-    public void deleteStepNumber(int id) {
+    public void deleteStepNumber(int number) {
         String sql = "DELETE FROM steps WHERE step_number = ?;";
-        jdbcTemplate.update(sql, id);
+        jdbcTemplate.update(sql, number);
     }
 
     @Override
     public void deleteAllSteps(int id) {
-        String sql = "DELETE FROM steps WHERE step_id = ?;";
+        String sql = "DELETE FROM steps WHERE recipe_id = ?;";
         jdbcTemplate.update(sql, id);
     }
 
