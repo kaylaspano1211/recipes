@@ -2,6 +2,8 @@ package com.web.recipes.dao;
 
 import com.web.recipes.model.Quantities;
 
+import java.util.List;
+
 public interface QuantitiesDao {
 
     Quantities addQuantity (Quantities quantity);
@@ -10,10 +12,10 @@ public interface QuantitiesDao {
 
     Quantities getQuantityById (int id);
 
-    Quantities getQuantityByRecipeId (int id);
+    List<Quantities> getQuantityByRecipeId (int id);
 
     Quantities getQuantityByIngredientId (int id);
 
-    Quantities getQuantityByMeasurementId (int id);
+    List<Quantities> getQuantityByMeasurementId (int id);
 
 }

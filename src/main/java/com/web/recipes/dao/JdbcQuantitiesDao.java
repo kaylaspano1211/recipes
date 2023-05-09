@@ -5,6 +5,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class JdbcQuantitiesDao implements QuantitiesDao {
 
@@ -35,7 +38,7 @@ public class JdbcQuantitiesDao implements QuantitiesDao {
 
     @Override
     public Quantities getQuantityById(int id) {
-        String sql = "SELECT quantity_id, recipe_id, ingredient_id, measurement_id, ingredient_quantity FROM quantity " +
+        String sql = "SELECT quantity_id, recipe_id, ingredient_id, measurement_id, ingredient_quantity FROM quantities " +
                 "WHERE quantity_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
 
@@ -47,21 +50,22 @@ public class JdbcQuantitiesDao implements QuantitiesDao {
     }
 
     @Override
-    public Quantities getQuantityByRecipeId(int id) {
-        String sql = "SELECT quantity_id, recipe_id, ingredient_id, measurement_id, ingredient_quantity FROM quantity " +
+    public List<Quantities> getQuantityByRecipeId(int id) {
+        List<Quantities> quantities = new ArrayList<>();
+        String sql = "SELECT quantity_id, recipe_id, ingredient_id, measurement_id, ingredient_quantity FROM quantities " +
                 "WHERE recipe_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
 
-        if(results.next()){
-            return mapRowToQuantities(results);
-        } else {
-            return null;
+        while(results.next()){
+            Quantities quantity = mapRowToQuantities(results);
+            quantities.add(quantity);
         }
+        return quantities;
     }
 
     @Override
     public Quantities getQuantityByIngredientId(int id) {
-        String sql = "SELECT quantity_id, recipe_id, ingredient_id, measurement_id, ingredient_quantity FROM quantity " +
+        String sql = "SELECT quantity_id, recipe_id, ingredient_id, measurement_id, ingredient_quantity FROM quantities " +
                 "WHERE ingredient_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
 
@@ -73,16 +77,17 @@ public class JdbcQuantitiesDao implements QuantitiesDao {
     }
 
     @Override
-    public Quantities getQuantityByMeasurementId(int id) {
-        String sql = "SELECT quantity_id, recipe_id, ingredient_id, measurement_id, ingredient_quantity FROM quantity " +
+    public List<Quantities> getQuantityByMeasurementId(int id) {
+        List<Quantities> quantities = new ArrayList<>();
+        String sql = "SELECT quantity_id, recipe_id, ingredient_id, measurement_id, ingredient_quantity FROM quantities " +
                 "WHERE measurement_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
 
-        if(results.next()){
-            return mapRowToQuantities(results);
-        } else {
-            return null;
+        while(results.next()){
+            Quantities quantity = mapRowToQuantities(results);
+            quantities.add(quantity);
         }
+        return quantities;
     }
 
 

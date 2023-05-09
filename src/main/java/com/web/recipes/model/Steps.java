@@ -14,6 +14,10 @@ public class Steps {
         this.stepDescription = stepDescription;
     }
 
+    public Steps() {
+
+    }
+
     public int getStepId() {
         return stepId;
     }

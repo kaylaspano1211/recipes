@@ -1,15 +1,10 @@
 package com.web.recipes.controller;
 
-import com.web.recipes.dao.ImagesDao;
-import com.web.recipes.dao.IngredientsDao;
-import com.web.recipes.dao.MeasurementDao;
-import com.web.recipes.dao.RecipeDao;
-import com.web.recipes.model.Images;
-import com.web.recipes.model.Ingredients;
-import com.web.recipes.model.Measurements;
-import com.web.recipes.model.Recipes;
+import com.web.recipes.dao.*;
+import com.web.recipes.model.*;
 import com.web.recipes.security.RecipeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -33,6 +28,8 @@ public class RecipesController {
     private ImagesDao imagesDao;
     @Autowired
     private MeasurementDao measurementDao;
+    @Autowired
+    private QuantitiesDao quantitiesDao;
 
 
 //    get all recipes
@@ -130,6 +127,52 @@ public class RecipesController {
     @RequestMapping(path = "/measurements/name/{measurementName}", method = RequestMethod.GET)
     public Measurements retrieveMeasurementByName (@PathVariable String measurementName) {
         return measurementDao.retrieveMeasurementByName(measurementName);
+    }
+
+//    add quantity
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/quantities", method = RequestMethod.POST)
+    public Quantities addQuantities (@RequestBody Quantities quantities) {
+        return quantitiesDao.addQuantity(quantities);
+    }
+
+//    update quantities
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(path = "/quantities/{id}", method = RequestMethod.PUT)
+    public void updateQuantities (double quantity, @PathVariable int id){
+        try {
+            quantitiesDao.updateQuantity(quantity, id);
+        } catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Quantity id doesn't exist");
+        }
+    }
+
+//    get quantity by id
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(path = "/quantities/{id}", method = RequestMethod.GET)
+    public Quantities retrieveQuantityById (@PathVariable int id) {
+        return quantitiesDao.getQuantityById(id);
+    }
+
+    //    get quantity by recipe id
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(path = "/quantities/recipes/{id}", method = RequestMethod.GET)
+    public List<Quantities> retrieveQuantityByRecipeId (@PathVariable int id) {
+        return quantitiesDao.getQuantityByRecipeId(id);
+    }
+
+    //    get quantity by ingredient id
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(path = "/quantities/ingredients/{id}", method = RequestMethod.GET)
+    public Quantities retrieveQuantityByIngredientId (@PathVariable int id) {
+        return quantitiesDao.getQuantityByIngredientId(id);
+    }
+
+    //    get quantity by measurement id
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(path = "/quantities/measurements/{id}", method = RequestMethod.GET)
+    public List<Quantities> retrieveQuantityByMeasurementId (@PathVariable int id) {
+        return quantitiesDao.getQuantityByMeasurementId(id);
     }
 
 }
