@@ -167,12 +167,12 @@ status: 200 ok
 
 delete step number
 http method: DELETE
-url: /steps/number/{id}
+url: /steps/number/{number}
 status: 204 no content
 	404 not found
 
 delete all steps
 http method: DELETE
-url: /steps/{id}
+url: /steps/{recipeId}
 status: 204 no content
 	404 not found
